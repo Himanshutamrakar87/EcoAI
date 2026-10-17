@@ -17,27 +17,41 @@ export const Storage = {
   // API Key operations
   getApiKey() {
     try {
+      // 1. Check Vite build-time global define from Vercel (GEMINI_API_KEY or VITE_GEMINI_API_KEY)
+      // @ts-ignore
+      if (typeof __GEMINI_API_KEY__ !== 'undefined' && __GEMINI_API_KEY__ && String(__GEMINI_API_KEY__).trim().length > 0) {
+        // @ts-ignore
+        return String(__GEMINI_API_KEY__).trim();
+      }
+
+      // 2. Check import.meta.env
+      if (typeof import.meta !== 'undefined' && import.meta.env) {
+        if (import.meta.env.VITE_GEMINI_API_KEY && String(import.meta.env.VITE_GEMINI_API_KEY).trim()) {
+          return String(import.meta.env.VITE_GEMINI_API_KEY).trim();
+        }
+        if (import.meta.env.GEMINI_API_KEY && String(import.meta.env.GEMINI_API_KEY).trim()) {
+          return String(import.meta.env.GEMINI_API_KEY).trim();
+        }
+      }
+
+      // 3. Check browser localStorage
       if (typeof localStorage !== 'undefined') {
         const stored = localStorage.getItem(STORAGE_KEYS.API_KEY);
         if (stored && stored.trim().length > 0) return stored.trim();
       }
-      
-      // Fallback to Vite environment variables if supplied on Vercel
-      if (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_GEMINI_API_KEY) {
-        return import.meta.env.VITE_GEMINI_API_KEY.trim();
-      }
 
-      // Fallback to environment define if supplied
+      // 4. Fallback to process.env define
       if (typeof process !== 'undefined' && process.env && process.env.GEMINI_API_KEY) {
-        return process.env.GEMINI_API_KEY.trim();
+        return String(process.env.GEMINI_API_KEY).trim();
       }
       return '';
     } catch (e) {
-      if (typeof process !== 'undefined' && process.env && process.env.GEMINI_API_KEY) {
-        return process.env.GEMINI_API_KEY.trim();
-      }
       return '';
     }
+  },
+
+  isKeyConfigured() {
+    return !!this.getApiKey();
   },
 
   setApiKey(key) {

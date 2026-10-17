@@ -151,8 +151,12 @@ function initApiKeyModal() {
       triggerBtn?.classList.add('active');
       if (statusLabel) statusLabel.textContent = 'Key Active';
     } else {
-      triggerBtn?.classList.remove('active');
-      if (statusLabel) statusLabel.textContent = 'API Key';
+      fetch('/api/gemini', { method: 'OPTIONS' }).then(r => {
+        if (r.ok) {
+          triggerBtn?.classList.add('active');
+          if (statusLabel) statusLabel.textContent = 'Key Active';
+        }
+      }).catch(() => {});
     }
   }
 
@@ -385,16 +389,6 @@ function initChatAssistant() {
     const cleanText = userText.trim();
     if (!cleanText || AppState.isAiProcessing) return;
 
-    // Check API Key
-    const apiKey = Storage.getApiKey();
-    if (!apiKey) {
-      appendMessage('user', cleanText, true);
-      appendMessage('ai', '⚠️ **Gemini API Key Required**\n\nTo communicate with the AI model, please configure your Google AI Studio API key. Click the **"API Key"** button in the top navigation bar to enter your key.', true);
-      const modal = document.getElementById('apiKeyModal');
-      if (modal) modal.classList.add('open');
-      return;
-    }
-
     appendMessage('user', cleanText, true);
     if (chatInput) chatInput.value = '';
 
@@ -479,14 +473,6 @@ function initSustainabilityPlanner() {
 
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
-
-    const apiKey = Storage.getApiKey();
-    if (!apiKey) {
-      showToast('Please configure your Gemini API Key first.', 'error');
-      const modal = document.getElementById('apiKeyModal');
-      if (modal) modal.classList.add('open');
-      return;
-    }
 
     const habits = {
       commuteMode: document.getElementById('planCommute')?.value || '',
@@ -663,14 +649,6 @@ function initWasteManager() {
   });
 
   async function runWasteAnalysis(category, item) {
-    const apiKey = Storage.getApiKey();
-    if (!apiKey) {
-      showToast('Please configure your Gemini API Key first.', 'error');
-      const modal = document.getElementById('apiKeyModal');
-      if (modal) modal.classList.add('open');
-      return;
-    }
-
     if (analyzeBtn) analyzeBtn.disabled = true;
     if (placeholder) placeholder.style.display = 'none';
     if (contentBox) {

@@ -100,27 +100,68 @@ export function formatAiResponse(rawText) {
  * and seamless fallback across compatible Gemini Flash models.
  */
 async function callGeminiApi({ contents, systemInstruction, temperature = 0.7 }) {
-  const apiKey = Storage.getApiKey();
-  
-  if (!apiKey) {
-    throw new Error(
-      'MISSING_KEY: Gemini API Key is not configured. Please click "Configure API Key" in the top bar or settings modal to add your Google AI Studio key.'
-    );
-  }
-
   if (GEMINI_CONFIG.isRequestInProgress) {
     throw new Error('BUSY: Another AI analysis is currently running. Please wait a moment.');
   }
 
   GEMINI_CONFIG.isRequestInProgress = true;
-
-  const modelsToTry = [
-    GEMINI_CONFIG.MODEL_NAME,
-    ...GEMINI_CONFIG.FALLBACK_MODELS.filter(m => m !== GEMINI_CONFIG.MODEL_NAME)
-  ];
-  let lastError = null;
+  const clientApiKey = Storage.getApiKey();
 
   try {
+    // 1. Try Vercel Serverless Function (/api/gemini)
+    // Uses GEMINI_API_KEY configured in Vercel Project Settings automatically
+    try {
+      const vController = new AbortController();
+      const vTimeout = setTimeout(() => vController.abort(), 25000);
+
+      const vercelRes = await fetch('/api/gemini', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          ...(clientApiKey ? { 'x-gemini-key': clientApiKey } : {})
+        },
+        body: JSON.stringify({
+          contents,
+          systemInstruction,
+          temperature,
+          model: GEMINI_CONFIG.MODEL_NAME
+        }),
+        signal: vController.signal
+      });
+
+      clearTimeout(vTimeout);
+
+      if (vercelRes.ok) {
+        const data = await vercelRes.json();
+        const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
+        if (text) return text;
+      } else if (vercelRes.status === 400) {
+        const errJson = await vercelRes.json().catch(() => ({}));
+        if (errJson?.error?.message?.includes('MISSING_KEY') && !clientApiKey) {
+          throw new Error('MISSING_KEY: GEMINI_API_KEY is not configured. Please add GEMINI_API_KEY in Vercel Project Settings > Environment Variables.');
+        }
+      }
+    } catch (proxyError) {
+      if (proxyError.message && proxyError.message.includes('MISSING_KEY')) {
+        throw proxyError;
+      }
+      // If /api/gemini is unavailable (e.g. static local preview), proceed to direct client API call
+    }
+
+    // 2. Direct client-side fetch (for local preview or when client key is provided)
+    const apiKey = clientApiKey;
+    if (!apiKey) {
+      throw new Error(
+        'MISSING_KEY: Gemini API Key is not configured. Please configure GEMINI_API_KEY in Vercel Environment Variables or click "API Key" to add it.'
+      );
+    }
+
+    const modelsToTry = [
+      GEMINI_CONFIG.MODEL_NAME,
+      ...GEMINI_CONFIG.FALLBACK_MODELS.filter(m => m !== GEMINI_CONFIG.MODEL_NAME)
+    ];
+    let lastError = null;
+
     for (const model of modelsToTry) {
       const endpoint = `${GEMINI_CONFIG.BASE_URL}/${model}:generateContent?key=${apiKey}`;
 
