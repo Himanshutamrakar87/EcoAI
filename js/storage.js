@@ -22,6 +22,11 @@ export const Storage = {
         if (stored && stored.trim().length > 0) return stored.trim();
       }
       
+      // Fallback to Vite environment variables if supplied on Vercel
+      if (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_GEMINI_API_KEY) {
+        return import.meta.env.VITE_GEMINI_API_KEY.trim();
+      }
+
       // Fallback to environment define if supplied
       if (typeof process !== 'undefined' && process.env && process.env.GEMINI_API_KEY) {
         return process.env.GEMINI_API_KEY.trim();

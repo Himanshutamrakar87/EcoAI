@@ -129,6 +129,36 @@ python3 -m http.server 8000
 
 ---
 
+## 7.1 How to Deploy on Vercel (Zero-Error Setup)
+
+EcoAI is pre-configured with `vercel.json` for seamless production deployment on [Vercel](https://vercel.com):
+
+1. **Push to GitHub:**
+   Commit and push your project to a GitHub repository:
+   ```bash
+   git init
+   git add .
+   git commit -m "Initial commit for EcoAI"
+   git branch -M main
+   git remote add origin https://github.com/YOUR_USERNAME/EcoAI.git
+   git push -u origin main
+   ```
+2. **Import into Vercel:**
+   * Go to [vercel.com/new](https://vercel.com/new) and log in with GitHub.
+   * Select your **EcoAI** repository.
+   * Vercel will automatically detect **Vite** via `vercel.json`:
+     * **Build Command:** `npm run build`
+     * **Output Directory:** `dist`
+3. **Configure Environment Variable (Optional but Recommended):**
+   * Under **Environment Variables**, add:
+     * **Key:** `VITE_GEMINI_API_KEY`
+     * **Value:** `Your_Google_AI_Studio_API_Key`
+   *(Users can also enter their key directly in the website's API Key modal at any time).*
+4. **Deploy:**
+   * Click **Deploy**. Vercel will build and launch your site with a free `.vercel.app` HTTPS domain in under 30 seconds!
+
+---
+
 ## 8. Feature Descriptions
 
 ### Feature 1: Home Dashboard & Hero Section
