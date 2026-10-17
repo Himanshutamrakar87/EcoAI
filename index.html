@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EcoAI – AI-Powered Environmental Sustainability Assistant | UN SDG 13</title>
+  <meta name="description" content="An intelligent environmental sustainability assistant aligned with UN SDG 13 (Climate Action) featuring Gemini AI chat, sustainability planning, carbon footprint calculation, waste segregation guide, and habit tracking." />
+  
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:title" content="EcoAI – AI-Powered Environmental Sustainability Assistant" />
+  <meta property="og:description" content="Promoting climate action and everyday sustainability with Google Gemini AI and UN SDG 13." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/assets/logo.svg" />
+  <meta name="twitter:card" content="summary" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/assets/logo.svg" />
+
+  <!-- Google Fonts Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/responsive.css" />
+
+  <!-- External Libraries (CDN for standalone static browser execution) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="header">
+    <div class="container">
+      <nav class="nav-bar" aria-label="Main Navigation">
+        <a href="#home" class="brand-link">
+          <img src="/assets/logo.svg" alt="EcoAI Leaf Tech Logo" class="brand-logo-img" />
+          <span>Eco<span style="color: var(--primary-green);">AI</span></span>
+          <span class="brand-badge">SDG 13</span>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#home" class="nav-link active">Home</a></li>
+          <li><a href="#assistant" class="nav-link">AI Assistant</a></li>
+          <li><a href="#planner" class="nav-link">Planner</a></li>
+          <li><a href="#calculator" class="nav-link">Carbon Calc</a></li>
+          <li><a href="#waste" class="nav-link">Waste Guide</a></li>
+          <li><a href="#challenges" class="nav-link">Challenges</a></li>
+          <li><a href="#sdg13" class="nav-link">SDG 13</a></li>
+          <li><a href="#about" class="nav-link">About Project</a></li>
+        </ul>
+
+        <!-- Navigation Actions -->
+        <div class="nav-actions">
+          <!-- API Key Status / Config Trigger Button -->
+          <button id="apiKeyTriggerBtn" class="api-key-pill" title="Configure Google Gemini API Key" aria-label="Configure Gemini API Key">
+            <span class="api-key-dot"></span>
+            <span class="api-key-text" id="apiKeyStatusLabel">API Key</span>
+            <i data-lucide="key" style="width: 14px; height: 14px;"></i>
+          </button>
+
+          <!-- Mobile Hamburger Toggle -->
+          <button class="mobile-nav-toggle" id="mobileMenuBtn" aria-label="Toggle navigation menu">
+            <i data-lucide="menu" id="menuIcon"></i>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- FEATURE 1: HOME DASHBOARD / HERO SECTION -->
+    <section id="home" class="hero-section">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-content">
+            <div class="hero-tag">
+              <i data-lucide="globe" style="width: 16px; height: 16px;"></i>
+              <span>UN Sustainable Development Goal 13: Climate Action</span>
+            </div>
+
+            <h1 class="hero-title">
+              Build a <span>Greener Future</span> with AI
+            </h1>
+
+            <p class="hero-description">
+              EcoAI empowers students, colleges, and communities to take meaningful climate action. 
+              Get personalized AI sustainability guidance, calculate your real carbon footprint, 
+              learn responsible waste segregation, and build eco-friendly daily habits.
+            </p>
+
+            <div class="hero-actions">
+              <a href="#assistant" class="btn btn-primary">
+                <i data-lucide="sparkles" style="width: 18px; height: 18px;"></i>
+                <span>Ask AI Assistant</span>
+              </a>
+              <a href="#calculator" class="btn btn-secondary">
+                <i data-lucide="calculator" style="width: 18px; height: 18px;"></i>
+                <span>Calculate Footprint</span>
+              </a>
+              <a href="#challenges" class="btn btn-outline-green">
+                <i data-lucide="check-circle-2" style="width: 18px; height: 18px;"></i>
+                <span>Green Challenges</span>
+              </a>
+            </div>
+
+            <!-- Illustrative Educational Impact Benchmarks -->
+            <div class="hero-stat-badges">
+              <div class="hero-stat-item">
+                <span class="hero-stat-num">1.5°C</span>
+                <span class="hero-stat-label">Paris Agreement Target</span>
+              </div>
+              <div class="hero-stat-item">
+                <span class="hero-stat-num">100%</span>
+                <span class="hero-stat-label">Client-Side Static Arch</span>
+              </div>
+              <div class="hero-stat-item">
+                <span class="hero-stat-num">0.71</span>
+                <span class="hero-stat-label">kg CO₂e/kWh Grid Factor</span>
+              </div>
+            </div>
+            <p style="font-size: 0.72rem; color: #94A3B8; margin-top: 0.5rem;">
+              *Values represent standard IPCC & Central Electricity Authority educational benchmark factors.
+            </p>
+          </div>
+
+          <!-- Hero Visual Feature Card -->
+          <div class="hero-card-visual">
+            <div class="hero-visual-header">
+              <div style="display: flex; align-items: center; gap: 0.6rem;">
+                <img src="/assets/logo.svg" alt="EcoAI Icon" style="width: 28px; height: 28px;" />
+                <span style="font-weight: 700; color: var(--dark-green); font-size: 0.95rem;">EcoAI Ecosystem</span>
+              </div>
+              <span class="hero-pill-mini">Gemini 3.8 Flash</span>
+            </div>
+
+            <div class="hero-feature-pills">
+              <div class="hero-feature-row">
+                <div class="hero-icon-box">
+                  <i data-lucide="bot"></i>
+                </div>
+                <div>
+                  <div style="font-weight: 700; font-size: 0.9rem; color: var(--dark-green);">Interactive Eco-Chatbot</div>
+                  <div style="font-size: 0.78rem; color: var(--text-muted);">Bilingual (EN/HI) sustainability advisor</div>
+                </div>
+              </div>
+
+              <div class="hero-feature-row">
+                <div class="hero-icon-box">
+                  <i data-lucide="calendar-check"></i>
+                </div>
+                <div>
+                  <div style="font-weight: 700; font-size: 0.9rem; color: var(--dark-green);">Personalized Action Plan</div>
+                  <div style="font-size: 0.78rem; color: var(--text-muted);">Campus & lifestyle habit roadmap</div>
+                </div>
+              </div>
+
+              <div class="hero-feature-row">
+                <div class="hero-icon-box">
+                  <i data-lucide="pie-chart"></i>
+                </div>
+                <div>
+                  <div style="font-weight: 700; font-size: 0.9rem; color: var(--dark-green);">Deterministic Footprint Calc</div>
+                  <div style="font-size: 0.78rem; color: var(--text-muted);">IPCC emission factors + Chart.js visual</div>
+                </div>
+              </div>
+
+              <div class="hero-feature-row">
+                <div class="hero-icon-box">
+                  <i data-lucide="recycle"></i>
+                </div>
+                <div>
+                  <div style="font-weight: 700; font-size: 0.9rem; color: var(--dark-green);">Waste Segregation Assistant</div>
+                  <div style="font-size: 0.78rem; color: var(--text-muted);">Dry, wet, and hazardous recycling codes</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Environmental Feature Highlights Overview -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-badge">Core Capabilities</span>
+          <h2 class="section-title">Designed for Students, Evaluated for Impact</h2>
+          <p class="section-subtitle">
+            Explore seven integrated modules built with clean HTML5, CSS3, JavaScript, 
+            and Google Gemini API to drive real ecological consciousness on college campuses.
+          </p>
+        </div>
+
+        <div class="features-grid">
+          <!-- Card 1 -->
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <i data-lucide="message-square-heart"></i>
+            </div>
+            <h3 class="feature-card-title">AI Environmental Assistant</h3>
+            <p class="feature-card-desc">
+              Ask questions regarding global warming, greenhouse gases, campus energy conservation, 
+              and practical eco-friendly habits in English or Hindi.
+            </p>
+            <a href="#assistant" class="feature-card-link">Launch Chatbot <i data-lucide="arrow-right" style="width: 14px; height: 14px;"></i></a>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <i data-lucide="list-todo"></i>
+            </div>
+            <h3 class="feature-card-title">AI Sustainability Planner</h3>
+            <p class="feature-card-desc">
+              Input your transportation, electricity, water, and food habits to receive an 
+              in-depth personalized 30-day green transition strategy.
+            </p>
+            <a href="#planner" class="feature-card-link">Create Your Plan <i data-lucide="arrow-right" style="width: 14px; height: 14px;"></i></a>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <i data-lucide="activity"></i>
+            </div>
+            <h3 class="feature-card-title">Carbon Footprint Calculator</h3>
+            <p class="feature-card-desc">
+              Calculate daily and monthly CO₂ equivalent emissions using authentic verified emission 
+              coefficients with interactive Chart.js visualizations.
+            </p>
+            <a href="#calculator" class="feature-card-link">Estimate Footprint <i data-lucide="arrow-right" style="width: 14px; height: 14px;"></i></a>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <i data-lucide="trash-2"></i>
+            </div>
+            <h3 class="feature-card-title">Waste Sorter & Guide</h3>
+            <p class="feature-card-desc">
+              Identify correct municipal bins, recycling preparation steps, upcycling ideas, and 
+              safe e-waste disposal techniques powered by Gemini.
+            </p>
+            <a href="#waste" class="feature-card-link">Inspect Waste Items <i data-lucide="arrow-right" style="width: 14px; height: 14px;"></i></a>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <i data-lucide="award"></i>
+            </div>
+            <h3 class="feature-card-title">Daily Green Challenges</h3>
+            <p class="feature-card-desc">
+              Gamify your everyday sustainability with zero single-use plastic days, phantom power shutdowns, 
+              and localized habit tracking stored in LocalStorage.
+            </p>
+            <a href="#challenges" class="feature-card-link">Join Challenges <i data-lucide="arrow-right" style="width: 14px; height: 14px;"></i></a>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <i data-lucide="book-open-check"></i>
+            </div>
+            <h3 class="feature-card-title">SDG 13 Climate Center</h3>
+            <p class="feature-card-desc">
+              Learn the science behind greenhouse gas concentrations, IPCC reports, 
+              global climate adaptation strategies, and student campus checklists.
+            </p>
+            <a href="#sdg13" class="feature-card-link">Explore Learning Hub <i data-lucide="arrow-right" style="width: 14px; height: 14px;"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURE 2: AI ENVIRONMENTAL ASSISTANT (CHATBOT) -->
+    <section id="assistant" class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-badge"><i data-lucide="bot" style="width: 14px; height: 14px;"></i> Intelligent Assistant</span>
+          <h2 class="section-title">AI Environmental Assistant</h2>
+          <p class="section-subtitle">
+            Engage with an intelligent assistant trained on climate science and sustainable living. 
+            Ask any question in English or Hindi.
+          </p>
+        </div>
+
+        <div class="chat-container">
+          <!-- Chat Header -->
+          <div class="chat-header">
+            <div class="chat-header-info">
+              <div class="chat-avatar-ai">
+                <i data-lucide="sparkles"></i>
+              </div>
+              <div class="chat-title-group">
+                <h3>EcoAI Climate Chat</h3>
+                <div class="chat-subtitle">
+                  <span class="online-dot"></span>
+                  <span>Gemini 3.8 Flash Connected</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="chat-controls">
+              <!-- Language Selector -->
+              <button id="chatLangEn" class="lang-toggle-btn active" title="Switch to English">English</button>
+              <button id="chatLangHi" class="lang-toggle-btn" title="हिंदी में बातचीत करें">हिंदी (Hindi)</button>
+              
+              <!-- Clear Chat -->
+              <button id="clearChatBtn" class="btn btn-secondary btn-sm" title="Clear chat history">
+                <i data-lucide="trash-2" style="width: 14px; height: 14px;"></i>
+                <span class="desktop-only">Clear</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Chat Messages Scrollable Box -->
+          <div class="chat-messages" id="chatMessages" role="log" aria-live="polite">
+            <!-- Initial welcome message generated via JS -->
+          </div>
+
+          <!-- Suggested Questions Bar -->
+          <div class="suggested-prompts-bar" id="suggestedPromptsBar">
+            <span style="font-size: 0.72rem; color: #94A3B8; font-weight: 600; text-transform: uppercase;">Prompts:</span>
+            <button class="suggested-chip" data-prompt="What is climate change and how does it affect students?">What is climate change?</button>
+            <button class="suggested-chip" data-prompt="How can I reduce electricity consumption in a college hostel room?">Save electricity in hostel</button>
+            <button class="suggested-chip" data-prompt="What are practical zero-cost ways to reduce single-use plastic?">Reduce single-use plastic</button>
+            <button class="suggested-chip" data-prompt="How can students make our college campus more sustainable?">Campus green initiatives</button>
+            <button class="suggested-chip" data-prompt="Explain the difference between global warming and climate change.">Global warming vs Climate change</button>
+            <button class="suggested-chip" data-prompt="How does food waste contribute to methane emissions in landfills?">Food waste & methane</button>
+          </div>
+
+          <!-- Chat Input Area -->
+          <form class="chat-input-area" id="chatForm">
+            <div class="chat-input-wrapper">
+              <input 
+                type="text" 
+                id="chatInput" 
+                class="chat-input" 
+                placeholder="Ask EcoAI about climate change, saving energy, waste sorting..." 
+                autocomplete="off"
+                required
+              />
+            </div>
+            <button type="submit" id="chatSendBtn" class="chat-send-btn" aria-label="Send message">
+              <i data-lucide="send" style="width: 18px; height: 18px;"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURE 3: AI SUSTAINABILITY PLANNER -->
+    <section id="planner" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-badge"><i data-lucide="sparkles" style="width: 14px; height: 14px;"></i> Custom Habit Plan</span>
+          <h2 class="section-title">AI Sustainability Planner</h2>
+          <p class="section-subtitle">
+            Tell us about your daily routines. EcoAI will synthesize your lifestyle profile into an 
+            actionable, student-tailored sustainability plan.
+          </p>
+        </div>
+
+        <div class="planner-grid">
+          <!-- Planner Input Form -->
+          <div class="card">
+            <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--dark-green); margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.5rem;">
+              <i data-lucide="sliders" style="width: 20px; height: 20px; color: var(--primary-green);"></i>
+              Your Daily Lifestyle Profile
+            </h3>
+
+            <form id="sustainabilityPlannerForm">
+              <!-- Commute Mode -->
+              <div class="form-group">
+                <label class="form-label" for="planCommute">
+                  Primary Daily Commute Mode <span class="required">*</span>
+                </label>
+                <select id="planCommute" class="form-select" required>
+                  <option value="Walking / Bicycle">Walking or Bicycle (Zero Emission)</option>
+                  <option value="Metro / Electric Suburban Train">Electric Metro or Suburban Train</option>
+                  <option value="Public City Bus / Campus Shuttle" selected>Public City Bus or Campus Shuttle</option>
+                  <option value="Electric Scooter / Electric Bike">Electric 2-Wheeler (EV)</option>
+                  <option value="Petrol Two-Wheeler / Motorcycle">Petrol Motorcycle / Scooter</option>
+                  <option value="Shared Auto / Shared Cab">Shared Auto-rickshaw / Cab</option>
+                  <option value="Personal Car (Solo)">Personal Petrol / Diesel Car</option>
+                </select>
+              </div>
+
+              <!-- Commute Distance -->
+              <div class="form-group">
+                <label class="form-label" for="planDistance">
+                  Round-trip Commute Distance (km/day) <span class="required">*</span>
+                </label>
+                <input type="number" id="planDistance" class="form-input" min="0" max="200" value="12" required />
+              </div>
+
+              <!-- Electricity Consumption Habit -->
+              <div class="form-group">
+                <label class="form-label" for="planElectricity">
+                  Electricity Conservation Awareness <span class="required">*</span>
+                </label>
+                <select id="planElectricity" class="form-select" required>
+                  <option value="Very conscientious (Always turn off switches, fans, monitors)">Very conscientious (Always turn off unused appliances)</option>
+                  <option value="Moderate (Turn off lights, but chargers stay plugged in)" selected>Moderate (Turn off lights, but standby power remains)</option>
+                  <option value="Needs improvement (AC runs overnight at 18-20C, frequent idle screens)">Needs improvement (Heavy AC/cooling use, high standby)</option>
+                </select>
+              </div>
+
+              <!-- Water Saving Habits -->
+              <div class="form-group">
+                <label class="form-label" for="planWater">
+                  Water Usage Practices <span class="required">*</span>
+                </label>
+                <select id="planWater" class="form-select" required>
+                  <option value="Conserves water actively (Bucket bath or short 4-min showers, tap off while brushing)">Conserves actively (Bucket bath / &lt;5 min showers)</option>
+                  <option value="Average (10-15 minute showers, occasionally running tap)" selected>Average (10-15 minute showers, moderate consumption)</option>
+                  <option value="High consumption (Long showers, washing under running water)">High consumption (Long showers, frequent running taps)</option>
+                </select>
+              </div>
+
+              <!-- Single Use Plastic -->
+              <div class="form-group">
+                <label class="form-label" for="planPlastic">
+                  Single-Use Plastic Frequency <span class="required">*</span>
+                </label>
+                <select id="planPlastic" class="form-select" required>
+                  <option value="Rarely (Always carry reusable bag, metal bottle, no plastic cutlery)">Rarely (Carry own bag, steel bottle, refuse straws)</option>
+                  <option value="Occasionally (Sometimes purchase bottled water or takeaway bags)" selected>Occasionally (Bottled water / takeaway plastic)</option>
+                  <option value="Frequently (Daily packaged beverages, instant noodles, plastic bags)">Frequently (Multiple daily packaged items & bags)</option>
+                </select>
+              </div>
+
+              <!-- Diet Type -->
+              <div class="form-group">
+                <label class="form-label" for="planDiet">
+                  Dietary Pattern (Optional Ecological Context)
+                </label>
+                <select id="planDiet" class="form-select">
+                  <option value="Strict Plant-based / Vegan">Strict Plant-based / Vegan</option>
+                  <option value="Vegetarian" selected>Vegetarian (Dairy, pulses, vegetables)</option>
+                  <option value="Omnivore / Non-Vegetarian (1-2 times weekly meat/poultry)">Moderate Omnivore (Meat/poultry 1-2 times weekly)</option>
+                  <option value="High Meat Consumption (Daily meat/poultry)">High Meat / Poultry Consumption</option>
+                </select>
+              </div>
+
+              <!-- Context -->
+              <div class="form-group">
+                <label class="form-label" for="planContext">
+                  Living Context / Focus Goal
+                </label>
+                <input type="text" id="planContext" class="form-input" placeholder="e.g., BCA College Hostel, Shared Apartment, Day Scholar" value="College Student / Hostel Resident" />
+              </div>
+
+              <button type="submit" id="generatePlanBtn" class="btn btn-primary" style="width: 100%;">
+                <i data-lucide="sparkles" style="width: 18px; height: 18px;"></i>
+                <span>Generate My Sustainability Plan</span>
+              </button>
+            </form>
+          </div>
+
+          <!-- Planner Output View -->
+          <div class="plan-result-container" id="planResultContainer">
+            <div class="plan-empty-state" id="planEmptyState">
+              <div class="plan-empty-icon">
+                <i data-lucide="clipboard-list" style="width: 32px; height: 32px;"></i>
+              </div>
+              <h4 style="font-size: 1.15rem; font-weight: 700; color: var(--dark-green); margin-bottom: 0.5rem;">
+                No Plan Generated Yet
+              </h4>
+              <p style="font-size: 0.875rem; color: var(--text-muted); max-width: 340px;">
+                Fill out your lifestyle profile on the left and click "Generate My Sustainability Plan" 
+                to receive an AI-crafted eco-roadmap.
+              </p>
+            </div>
+
+            <!-- Content injected via JS -->
+            <div id="planContentBox" style="display: none;">
+              <!-- Plan Header -->
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-color);">
+                <div>
+                  <span class="brand-badge" style="margin-left: 0;">Personalized Blueprint</span>
+                  <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--dark-green); margin-top: 0.35rem;">
+                    Your Sustainability RoadMap
+                  </h3>
+                </div>
+                <button id="printPlanBtn" class="btn btn-secondary btn-sm" title="Print or save plan">
+                  <i data-lucide="printer" style="width: 14px; height: 14px;"></i>
+                  <span>Print Plan</span>
+                </button>
+              </div>
+
+              <div id="planOutputText" class="prose" style="font-size: 0.925rem; line-height: 1.65;"></div>
+
+              <div style="margin-top: 2rem; padding: 1rem; background: #F8FAFC; border-radius: var(--radius-md); font-size: 0.775rem; color: #64748B; border-left: 3px solid var(--primary-green);">
+                <strong>Academic Estimation Disclaimer:</strong> Expected environmental benefits are qualitative educational estimates to guide prioritization. Actual emission reductions depend on local grid mix, supply chains, and municipal infrastructure.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURE 4: CARBON FOOTPRINT CALCULATOR -->
+    <section id="calculator" class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-badge"><i data-lucide="calculator" style="width: 14px; height: 14px;"></i> Numerical Carbon Audit</span>
+          <h2 class="section-title">Carbon Footprint Calculator</h2>
+          <p class="section-subtitle">
+            Estimate your personal greenhouse gas emissions using documented emission factors 
+            from the IPCC and national grid baselines. Calculated deterministically in client-side JavaScript.
+          </p>
+        </div>
+
+        <div class="calculator-grid">
+          <!-- Calculator Input Form -->
+          <div class="card">
+            <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--dark-green); margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.5rem;">
+              <i data-lucide="sliders-horizontal" style="width: 20px; height: 20px; color: var(--primary-green);"></i>
+              Activity & Energy Inputs
+            </h3>
+
+            <form id="carbonCalcForm">
+              <!-- Commute distance -->
+              <div class="form-group">
+                <label class="form-label" for="calcDistance">
+                  Daily Commute Distance (km/day)
+                </label>
+                <input type="number" id="calcDistance" class="form-input" min="0" max="250" value="15" required />
+                <span style="font-size: 0.75rem; color: var(--text-muted);">Total two-way travel per day.</span>
+              </div>
+
+              <!-- Transport Mode -->
+              <div class="form-group">
+                <label class="form-label" for="calcTransportMode">
+                  Mode of Commute & Fuel Type
+                </label>
+                <select id="calcTransportMode" class="form-select" required>
+                  <option value="walking_bicycle">Walking / Bicycle (0.000 kg CO₂e/km)</option>
+                  <option value="electric_metro">Electric Metro / Rail (0.035 kg CO₂e/p-km)</option>
+                  <option value="public_bus" selected>City Public Bus (0.065 kg CO₂e/p-km)</option>
+                  <option value="electric_two_wheeler">Electric 2-Wheeler EV (0.018 kg CO₂e/km)</option>
+                  <option value="petrol_two_wheeler">Petrol Two-Wheeler (0.046 kg CO₂e/km)</option>
+                  <option value="shared_cab_auto">Shared Auto / Cab (0.085 kg CO₂e/p-km)</option>
+                  <option value="electric_car">Electric Car EV (0.062 kg CO₂e/km)</option>
+                  <option value="petrol_car_solo">Petrol Car - Solo (0.165 kg CO₂e/km)</option>
+                  <option value="diesel_car_solo">Diesel Car - Solo (0.175 kg CO₂e/km)</option>
+                </select>
+              </div>
+
+              <!-- Monthly Electricity -->
+              <div class="form-group">
+                <label class="form-label" for="calcElectricity">
+                  Household Electricity Consumption (kWh/month)
+                </label>
+                <input type="number" id="calcElectricity" class="form-input" min="0" max="1500" value="140" required />
+                <span style="font-size: 0.75rem; color: var(--text-muted);">From your monthly power bill (Grid emission: 0.71 kg CO₂e/kWh).</span>
+              </div>
+
+              <!-- Household Members -->
+              <div class="form-group">
+                <label class="form-label" for="calcMembers">
+                  Household Members Sharing Electricity / Gas
+                </label>
+                <input type="number" id="calcMembers" class="form-input" min="1" max="12" value="2" required />
+                <span style="font-size: 0.75rem; color: var(--text-muted);">Used to apportion your personal per-capita share.</span>
+              </div>
+
+              <!-- Cooking Gas LPG -->
+              <div class="form-group">
+                <label class="form-label" for="calcLpg">
+                  LPG Cooking Cylinders (14.2 kg) per Month
+                </label>
+                <input type="number" id="calcLpg" class="form-input" min="0" max="5" step="0.1" value="0.5" required />
+                <span style="font-size: 0.75rem; color: var(--text-muted);">~42.5 kg CO₂e per 14.2 kg cylinder burned.</span>
+              </div>
+
+              <!-- Diet Context -->
+              <div class="form-group">
+                <label class="form-label" for="calcDiet">
+                  Dietary Baseline (Daily Food Footprint)
+                </label>
+                <select id="calcDiet" class="form-select">
+                  <option value="vegan">Vegan (~1.5 kg CO₂e/day)</option>
+                  <option value="vegetarian" selected>Vegetarian (~1.8 kg CO₂e/day)</option>
+                  <option value="low_meat">Moderate Meat Eater (~2.4 kg CO₂e/day)</option>
+                  <option value="high_meat">High Meat Eater (~3.3 kg CO₂e/day)</option>
+                </select>
+              </div>
+
+              <button type="submit" class="btn btn-primary" style="width: 100%;">
+                <i data-lucide="refresh-cw" style="width: 18px; height: 18px;"></i>
+                <span>Calculate & Update Breakdown</span>
+              </button>
+            </form>
+          </div>
+
+          <!-- Calculator Results & Chart View -->
+          <div class="card">
+            <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--dark-green); margin-bottom: 1.25rem; display: flex; align-items: center; justify-content: space-between;">
+              <span>Emission Audit Result</span>
+              <span class="brand-badge" style="margin-left: 0;">Approximate Estimate</span>
+            </h3>
+
+            <!-- Main Metric Banner -->
+            <div class="stat-metric-card">
+              <div style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.25rem;">
+                Estimated Annual Footprint
+              </div>
+              <div>
+                <span class="stat-metric-number" id="yearlyTonnesVal">1.48</span>
+                <span class="stat-metric-unit">tonnes CO₂e / year</span>
+              </div>
+              <div class="stat-metric-sub">
+                ≈ <span id="monthlyKgVal" style="font-weight: 700; color: var(--dark-green);">123.3</span> kg CO₂e/month 
+                (<span id="dailyKgVal" style="font-weight: 700; color: var(--dark-green);">4.1</span> kg CO₂e/day)
+              </div>
+            </div>
+
+            <!-- Chart.js Canvas -->
+            <div class="carbon-chart-wrapper">
+              <canvas id="carbonDonutChart"></canvas>
+            </div>
+
+            <!-- Benchmark Progress Comparison -->
+            <div class="benchmark-bar-container">
+              <div style="font-size: 0.825rem; font-weight: 700; color: var(--dark-green); margin-bottom: 0.75rem;">
+                Comparison Against Global & National Benchmarks:
+              </div>
+
+              <!-- Your Estimate -->
+              <div>
+                <div class="benchmark-row">
+                  <span>Your Estimate</span>
+                  <span id="benchmarkYourVal" style="font-weight: 700; color: var(--primary-green);">1.48 tonnes</span>
+                </div>
+                <div class="progress-track">
+                  <div class="progress-fill" id="benchmarkYourFill" style="width: 31%; background: var(--primary-green);"></div>
+                </div>
+              </div>
+
+              <!-- India National Avg -->
+              <div>
+                <div class="benchmark-row">
+                  <span>India National Average (Per Capita)</span>
+                  <span style="font-weight: 600; color: #475569;">1.90 tonnes</span>
+                </div>
+                <div class="progress-track">
+                  <div class="progress-fill" style="width: 40%; background: #0284C7;"></div>
+                </div>
+              </div>
+
+              <!-- Global Avg -->
+              <div>
+                <div class="benchmark-row">
+                  <span>Global Per Capita Average</span>
+                  <span style="font-weight: 600; color: #475569;">4.70 tonnes</span>
+                </div>
+                <div class="progress-track">
+                  <div class="progress-fill" style="width: 100%; background: #F59E0B;"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Specific High-Impact Tips List -->
+            <div id="calculatorRecommendationsList" style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem;">
+              <!-- Injected by JS -->
+            </div>
+
+            <div style="margin-top: 1.5rem; padding: 0.85rem; background: #F8FAFC; border-radius: var(--radius-sm); font-size: 0.72rem; color: #64748B; border: 1px solid var(--border-color);">
+              <strong>Calculation Source & Methodology:</strong> Electricity factors are based on the Central Electricity Authority (CEA) CO₂ Baseline Database for the Indian Power Grid (~0.71 kg CO₂/kWh). Transport factors reference the IPCC Mobile Combustion Guidelines and UK DESNZ/DEFRA Conversion Factors. Diet factors are derived from Poore & Nemecek (Science, 2018).
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURE 5: WASTE MANAGEMENT ASSISTANT -->
+    <section id="waste" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-badge"><i data-lucide="recycle" style="width: 14px; height: 14px;"></i> Circular Economy</span>
+          <h2 class="section-title">Waste Management Assistant</h2>
+          <p class="section-subtitle">
+            Get instant, accurate segregation, recycling codes, upcycling ideas, and safe municipal 
+            disposal advice powered by Google Gemini AI.
+          </p>
+        </div>
+
+        <div style="max-width: 900px; margin: 0 auto;">
+          <!-- Quick Waste Category Chips -->
+          <div style="margin-bottom: 0.75rem; font-size: 0.85rem; font-weight: 600; color: var(--text-muted);">
+            Select or click a common waste category:
+          </div>
+          <div class="waste-category-chips" id="wasteChipsContainer">
+            <button class="waste-chip active" data-category="Plastic">
+              <i data-lucide="package" style="width: 16px; height: 16px;"></i>
+              <span>Plastic (PET / HDPE / Multi-layer)</span>
+            </button>
+            <button class="waste-chip" data-category="Paper & Cardboard">
+              <i data-lucide="file-text" style="width: 16px; height: 16px;"></i>
+              <span>Paper & Cardboard</span>
+            </button>
+            <button class="waste-chip" data-category="Electronic Waste (E-Waste)">
+              <i data-lucide="cpu" style="width: 16px; height: 16px;"></i>
+              <span>E-Waste & Cables</span>
+            </button>
+            <button class="waste-chip" data-category="Household Batteries">
+              <i data-lucide="battery-warning" style="width: 16px; height: 16px;"></i>
+              <span>Batteries (Hazardous)</span>
+            </button>
+            <button class="waste-chip" data-category="Glass">
+              <i data-lucide="wine" style="width: 16px; height: 16px;"></i>
+              <span>Glass Bottles & Jars</span>
+            </button>
+            <button class="waste-chip" data-category="Metal & Aluminium">
+              <i data-lucide="shield" style="width: 16px; height: 16px;"></i>
+              <span>Aluminium Cans & Metal</span>
+            </button>
+            <button class="waste-chip" data-category="Organic & Kitchen Food Scraps">
+              <i data-lucide="apple" style="width: 16px; height: 16px;"></i>
+              <span>Organic & Food Scraps</span>
+            </button>
+            <button class="waste-chip" data-category="Mixed Sanitary & Domestic Waste">
+              <i data-lucide="archive" style="width: 16px; height: 16px;"></i>
+              <span>Mixed Domestic Waste</span>
+            </button>
+          </div>
+
+          <!-- Specific Item Query Box -->
+          <div class="card" style="margin-bottom: 1.75rem;">
+            <form id="wasteSearchForm" style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+              <input 
+                type="text" 
+                id="wasteItemInput" 
+                class="form-input" 
+                style="flex: 1; min-width: 260px;" 
+                placeholder="Or specify exact item (e.g., lithium phone battery, pizza box, bubble wrap, medicine blister packs)..." 
+              />
+              <button type="submit" id="analyzeWasteBtn" class="btn btn-primary">
+                <i data-lucide="sparkles" style="width: 16px; height: 16px;"></i>
+                <span>Get Segregation Guide</span>
+              </button>
+            </form>
+          </div>
+
+          <!-- Waste Analysis Result Output Card -->
+          <div class="waste-result-card" id="wasteResultCard">
+            <!-- Injected by JS -->
+            <div id="wasteResultPlaceholder" style="text-align: center; padding: 2rem 1rem; color: var(--text-muted);">
+              <i data-lucide="recycle" style="width: 48px; height: 48px; margin: 0 auto 1rem auto; color: var(--primary-green);"></i>
+              <h4 style="font-size: 1.1rem; font-weight: 700; color: var(--dark-green); margin-bottom: 0.35rem;">
+                Select a Waste Type or Search for an Item
+              </h4>
+              <p style="font-size: 0.875rem; max-width: 460px; margin: 0 auto;">
+                Learn the correct bin color (Dry/Wet/Hazardous), safe preparation steps, and upcycling ideas.
+              </p>
+            </div>
+            
+            <div id="wasteResultContent" style="display: none;"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURE 6: GREEN CHALLENGES -->
+    <section id="challenges" class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-badge"><i data-lucide="trophy" style="width: 14px; height: 14px;"></i> Action Tracker</span>
+          <h2 class="section-title">Green Habit Challenges</h2>
+          <p class="section-subtitle">
+            Adopt tangible micro-habits. Complete daily sustainability tasks, track your completion progress, 
+            and foster environmental discipline stored in LocalStorage.
+          </p>
+        </div>
+
+        <!-- Challenges Status & Progress Banner -->
+        <div class="challenges-overview-banner">
+          <div>
+            <div style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: #BBF7D0; margin-bottom: 0.35rem;">
+              Your Sustainability Journey
+            </div>
+            <h3 style="font-size: 1.75rem; font-weight: 800; display: flex; align-items: center; gap: 0.6rem;">
+              <span id="challengeLevelBadge">🌱</span>
+              <span id="challengeLevelTitle">Eco Novice</span>
+            </h3>
+            <p style="font-size: 0.9rem; color: #DCFCE7; margin-top: 0.35rem;">
+              <span id="completedCountText">0</span> of <span id="totalCountText">9</span> habits completed today.
+            </p>
+          </div>
+
+          <div class="challenges-stats-group">
+            <div style="text-align: center;">
+              <div style="font-size: 2.25rem; font-weight: 800; line-height: 1;" id="challengePercentageText">0%</div>
+              <div style="font-size: 0.775rem; color: #BBF7D0; font-weight: 600;">Completion Rate</div>
+            </div>
+            <button id="resetChallengesBtn" class="btn btn-secondary btn-sm" style="background: rgba(255,255,255,0.18); color: #FFFFFF; border-color: rgba(255,255,255,0.3);">
+              <i data-lucide="rotate-ccw" style="width: 14px; height: 14px;"></i>
+              <span>Reset</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Daily Spotlight Challenge Box -->
+        <div class="card" style="margin-bottom: 2rem; border-left: 6px solid var(--primary-green); background: #FFFFFF;">
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+            <div>
+              <span class="brand-badge" style="background: #FEF3C7; color: #92400E; border-color: #FDE68A;">
+                ⭐ Spotlight Challenge of the Day
+              </span>
+              <h4 id="dailySpotlightTitle" style="font-size: 1.2rem; font-weight: 700; color: var(--dark-green); margin-top: 0.4rem;">
+                Zero Single-Use Plastic Day
+              </h4>
+              <p id="dailySpotlightDesc" style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.25rem;">
+                Refuse all disposable plastic bags, plastic straws, and disposable cutlery today.
+              </p>
+            </div>
+            <button id="dailySpotlightBtn" class="btn btn-outline-green btn-sm">
+              <i data-lucide="check" style="width: 14px; height: 14px;"></i>
+              <span>Mark Completed</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Grid of Challenge Cards -->
+        <div class="challenges-grid" id="challengesGrid">
+          <!-- Injected via JS -->
+        </div>
+
+        <!-- Academic & Scientific Disclaimer -->
+        <div style="margin-top: 2rem; text-align: center; font-size: 0.775rem; color: #64748B;">
+          <strong>Educational Distinction:</strong> Completing self-reported lifestyle challenges builds behavioral discipline and community consciousness. 
+          Self-reported checklists do not represent metered or ISO-verified carbon emission offsets.
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURE 7: SDG 13 LEARNING CENTER -->
+    <section id="sdg13" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="sdg-badge-large">
+            <i data-lucide="target" style="width: 20px; height: 20px;"></i>
+            <span>UN SDG 13: Climate Action</span>
+          </div>
+          <h2 class="section-title">SDG 13 Climate Action Learning Center</h2>
+          <p class="section-subtitle">
+            Grounded in scientific consensus from the United Nations and the Intergovernmental Panel on Climate Change (IPCC).
+          </p>
+        </div>
+
+        <div class="edu-grid">
+          <!-- Card 1 -->
+          <div class="edu-card">
+            <h3 class="edu-card-title">
+              <i data-lucide="globe-2" style="color: var(--primary-green);"></i>
+              What is UN SDG 13?
+            </h3>
+            <p class="edu-card-text">
+              Adopted by all 193 United Nations Member States in 2015, Sustainable Development Goal 13 calls for urgent action 
+              to combat climate change and its impacts. Targets include strengthening resilience to climate-related hazards, 
+              integrating climate measures into national policies, and improving human and institutional capacity on climate mitigation.
+            </p>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="edu-card">
+            <h3 class="edu-card-title">
+              <i data-lucide="sun-medium" style="color: #F59E0B;"></i>
+              Global Warming vs. Climate Change
+            </h3>
+            <p class="edu-card-text">
+              <strong>Global Warming</strong> is the long-term heating of Earth's climate system observed since the pre-industrial period 
+              due to human fossil fuel burning. <strong>Climate Change</strong> encompasses global warming plus the resulting broader 
+              shifts including melting glaciers, intensified precipitation extremes, shifting agricultural seasons, and rising sea levels.
+            </p>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="edu-card">
+            <h3 class="edu-card-title">
+              <i data-lucide="cloud-fog" style="color: #64748B;"></i>
+              Greenhouse Gases (GHGs)
+            </h3>
+            <p class="edu-card-text">
+              Atmospheric gases that trap thermal infrared radiation:
+              <strong>Carbon Dioxide (CO₂)</strong> from fossil fuels and deforestation; 
+              <strong>Methane (CH₄)</strong> from decomposing landfill organics and agriculture (28x warming potential of CO₂ over 100 yrs); 
+              and <strong>Nitrous Oxide (N₂O)</strong> from chemical fertilizers.
+            </p>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="edu-card">
+            <h3 class="edu-card-title">
+              <i data-lucide="shield-alert" style="color: #DC2626;"></i>
+              Impacts on Communities
+            </h3>
+            <p class="edu-card-text">
+              Climate vulnerability disproportionately impacts coastal cities, agricultural food security, drinking water reservoirs, 
+              and public health through urban heat island effects, vector-borne diseases, and unpredictable monsoon patterns.
+            </p>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="edu-card">
+            <h3 class="edu-card-title">
+              <i data-lucide="graduation-cap" style="color: var(--primary-green);"></i>
+              Campus & Student Climate Action
+            </h3>
+            <p class="edu-card-text">
+              Colleges possess immense potential as living laboratories: conducting campus energy audits, implementing dual-stream 
+              waste segregation, switching to energy-efficient LED fixtures, establishing composting pits for canteen food waste, and 
+              promoting bicycle or mass-transit commutes.
+            </p>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="edu-card">
+            <h3 class="edu-card-title">
+              <i data-lucide="external-link" style="color: #0284C7;"></i>
+              Authoritative Educational Portals
+            </h3>
+            <p class="edu-card-text" style="margin-bottom: 0.75rem;">
+              Verify climate science using peer-reviewed, official organizations:
+            </p>
+            <ul style="list-style: none; font-size: 0.85rem; display: flex; flex-direction: column; gap: 0.4rem;">
+              <li>
+                <a href="https://sdgs.un.org/goals/goal13" target="_blank" rel="noopener noreferrer" style="color: var(--primary-green); font-weight: 600; text-decoration: none;">
+                  → UN Department of Economic & Social Affairs (SDG 13)
+                </a>
+              </li>
+              <li>
+                <a href="https://www.ipcc.ch/" target="_blank" rel="noopener noreferrer" style="color: var(--primary-green); font-weight: 600; text-decoration: none;">
+                  → Intergovernmental Panel on Climate Change (IPCC)
+                </a>
+              </li>
+              <li>
+                <a href="https://www.unep.org/" target="_blank" rel="noopener noreferrer" style="color: var(--primary-green); font-weight: 600; text-decoration: none;">
+                  → United Nations Environment Programme (UNEP)
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURE 8: ABOUT PROJECT (ACADEMIC BCA PRESENTATION) -->
+    <section id="about" class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-badge"><i data-lucide="file-badge" style="width: 14px; height: 14px;"></i> Academic Documentation</span>
+          <h2 class="section-title">About the Project</h2>
+          <p class="section-subtitle">
+            Academic Project Overview prepared for Bachelor of Computer Applications (BCA) Evaluation.
+          </p>
+        </div>
+
+        <div class="academic-report-card">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
+            <div>
+              <h3 style="font-size: 1.6rem; font-weight: 800; color: var(--dark-green);">
+                EcoAI – AI-Powered Environmental Sustainability Assistant
+              </h3>
+              <div style="font-size: 0.95rem; color: var(--primary-green); font-weight: 600; margin-top: 0.25rem;">
+                UN Sustainable Development Goal 13: Climate Action
+              </div>
+            </div>
+            <span class="brand-badge" style="font-size: 0.8rem; padding: 0.35rem 0.85rem;">
+              Final Year BCA Project
+            </span>
+          </div>
+
+          <!-- Academic Metadata Table with student/guide placeholders -->
+          <div class="table-responsive">
+            <table class="project-meta-table">
+              <tbody>
+                <tr>
+                  <th>Student Name</th>
+                  <td><span class="placeholder-badge">[STUDENT_NAME_HERE]</span></td>
+                </tr>
+                <tr>
+                  <th>Roll / Registration No.</th>
+                  <td><span class="placeholder-badge">[STUDENT_ROLL_NUMBER]</span></td>
+                </tr>
+                <tr>
+                  <th>Degree / Course</th>
+                  <td>Bachelor of Computer Applications (BCA)</td>
+                </tr>
+                <tr>
+                  <th>College / University</th>
+                  <td><span class="placeholder-badge">[COLLEGE_UNIVERSITY_NAME]</span></td>
+                </tr>
+                <tr>
+                  <th>Project Guide / Supervisor</th>
+                  <td><span class="placeholder-badge">[FACULTY_GUIDE_NAME]</span></td>
+                </tr>
+                <tr>
+                  <th>Project Domain</th>
+                  <td>Artificial Intelligence & Web Application Development</td>
+                </tr>
+                <tr>
+                  <th>Frontend Technology Stack</th>
+                  <td>HTML5, CSS3, JavaScript (ES6+), Google Gemini API (v1beta), Chart.js, LocalStorage</td>
+                </tr>
+                <tr>
+                  <th>Architecture Constraint</th>
+                  <td>Pure Static Frontend-Only (Strictly zero backend databases or Node.js runtime servers)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Academic Sections -->
+          <div style="display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2rem;">
+            <div>
+              <h4 style="font-size: 1.1rem; font-weight: 700; color: var(--dark-green); margin-bottom: 0.35rem;">
+                1. Problem Statement
+              </h4>
+              <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6;">
+                While climate change poses an existential threat, students and urban citizens often struggle to translate abstract 
+                scientific data into practical everyday habits. Information regarding carbon footprints, waste segregation, and energy 
+                conservation is frequently fragmented, overly complex, or difficult to contextualize to college environments.
+              </p>
+            </div>
+
+            <div>
+              <h4 style="font-size: 1.1rem; font-weight: 700; color: var(--dark-green); margin-bottom: 0.35rem;">
+                2. Proposed Solution
+              </h4>
+              <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6;">
+                EcoAI provides an intuitive, all-in-one web platform integrating Google Gemini AI reasoning with deterministic 
+                carbon formulas. The solution delivers interactive bilingual climate chat, personalized 30-day sustainability blueprints, 
+                instant waste sorting advice, verified carbon metrics, and gamified habit tracking that operates entirely within the browser.
+              </p>
+            </div>
+
+            <div>
+              <h4 style="font-size: 1.1rem; font-weight: 700; color: var(--dark-green); margin-bottom: 0.35rem;">
+                3. Key Objectives
+              </h4>
+              <ul style="list-style: disc; padding-left: 1.25rem; font-size: 0.9rem; color: var(--text-muted); line-height: 1.6;">
+                <li>Democratize climate education aligned with United Nations SDG 13 targets.</li>
+                <li>Implement verified client-side numerical carbon auditing using IPCC and national grid emission baselines.</li>
+                <li>Provide accessible bilingual AI environmental guidance supporting both English and Hindi.</li>
+                <li>Design a responsive, zero-database architecture leveraging browser LocalStorage for privacy and fast local testing.</li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 style="font-size: 1.1rem; font-weight: 700; color: var(--dark-green); margin-bottom: 0.35rem;">
+                4. System Limitations
+              </h4>
+              <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6;">
+                In strict compliance with the frontend-only project brief, API keys configured client-side are visible in browser developer tools (Network tab). Therefore, this build is tailored for academic project evaluation and local development. Commercial deployment would require an API gateway proxy. Additionally, calculations are educational approximations and do not constitute corporate ISO 14064 audits.
+              </p>
+            </div>
+
+            <div>
+              <h4 style="font-size: 1.1rem; font-weight: 700; color: var(--dark-green); margin-bottom: 0.35rem;">
+                5. Future Scope
+              </h4>
+              <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6;">
+                Future enhancements could include multi-campus leaderboard competitions, IoT-enabled smart electricity plug telemetry, 
+                computer-vision waste image identification using Gemini multimodal vision models, and localized municipal recycling pickup schedules.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Professional Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h4>EcoAI</h4>
+          <p>
+            An AI-powered environmental sustainability assistant aligned with United Nations 
+            Sustainable Development Goal 13 (Climate Action). Built for academic BCA project demonstration.
+          </p>
+          <div style="margin-top: 1.25rem; display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(255,255,255,0.1); padding: 0.35rem 0.75rem; border-radius: var(--radius-full); font-size: 0.75rem;">
+            <i data-lucide="shield-check" style="width: 14px; height: 14px;"></i>
+            <span>Pure Client-Side Static Architecture</span>
+          </div>
+        </div>
+
+        <div class="footer-column">
+          <h5>Core Features</h5>
+          <ul class="footer-links">
+            <li><a href="#assistant" class="footer-link">AI Assistant</a></li>
+            <li><a href="#planner" class="footer-link">Habit Planner</a></li>
+            <li><a href="#calculator" class="footer-link">Carbon Footprint</a></li>
+            <li><a href="#waste" class="footer-link">Waste Sorter</a></li>
+            <li><a href="#challenges" class="footer-link">Green Challenges</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h5>Knowledge Hub</h5>
+          <ul class="footer-links">
+            <li><a href="#sdg13" class="footer-link">UN SDG 13 Details</a></li>
+            <li><a href="https://www.ipcc.ch/" target="_blank" rel="noopener noreferrer" class="footer-link">IPCC Reports</a></li>
+            <li><a href="https://www.unep.org/" target="_blank" rel="noopener noreferrer" class="footer-link">UN Environment</a></li>
+            <li><a href="#about" class="footer-link">Academic Report</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h5>Configuration</h5>
+          <ul class="footer-links">
+            <li><a href="javascript:void(0)" id="footerApiKeyLink" class="footer-link">Configure Gemini Key</a></li>
+            <li><a href="javascript:void(0)" id="footerResetDataLink" class="footer-link">Clear Local Data</a></li>
+            <li><a href="https://aistudio.google.com/" target="_blank" rel="noopener noreferrer" class="footer-link">Google AI Studio</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          &copy; 2026 EcoAI Project. Designed for BCA College Project Submission & Evaluation.
+        </div>
+        <div style="display: flex; gap: 1rem;">
+          <span>SDG 13 Climate Action</span>
+          <span>•</span>
+          <span>Google Gemini API</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- API KEY SETTINGS MODAL -->
+  <div class="modal-overlay" id="apiKeyModal" role="dialog" aria-modal="true" aria-labelledby="apiKeyModalTitle">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <i data-lucide="key" style="color: var(--primary-green); width: 20px; height: 20px;"></i>
+          <h3 class="modal-title" id="apiKeyModalTitle">Google Gemini API Key Configuration</h3>
+        </div>
+        <button class="modal-close-btn" id="closeApiKeyModalBtn" aria-label="Close modal">
+          <i data-lucide="x" style="width: 20px; height: 20px;"></i>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Academic & Security Architecture Disclosure -->
+        <div style="background: #FEF3C7; border: 1px solid #FCD34D; border-radius: var(--radius-md); padding: 0.9rem 1rem; margin-bottom: 1.25rem;">
+          <div style="font-weight: 700; font-size: 0.85rem; color: #92400E; display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.25rem;">
+            <i data-lucide="alert-triangle" style="width: 16px; height: 16px;"></i>
+            Frontend-Only Security Architecture Disclosure
+          </div>
+          <p style="font-size: 0.78rem; color: #78350F; line-height: 1.45;">
+            In compliance with BCA project requirements, EcoAI is built strictly as a static frontend with <strong>no backend server</strong>. 
+            Because requests to Google Gemini are made directly from the user's browser, any client-side API key can be inspected in browser Developer Tools. 
+            <strong>Never commit a real key to a public GitHub repository.</strong> For production web apps, requests must be proxied via a secure backend.
+          </p>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="apiKeyInput">
+            Gemini API Key
+          </label>
+          <input 
+            type="password" 
+            id="apiKeyInput" 
+            class="form-input" 
+            placeholder="AIzaSy..." 
+            autocomplete="off"
+          />
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.4rem;">
+            <span style="font-size: 0.75rem; color: var(--text-muted);">
+              Stored locally in your browser's LocalStorage.
+            </span>
+            <button type="button" id="toggleKeyVisibilityBtn" style="background: none; border: none; font-size: 0.75rem; color: var(--primary-green); cursor: pointer; font-weight: 600;">
+              Show Key
+            </button>
+          </div>
+        </div>
+
+        <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+          Don't have an API key? You can generate a free Gemini key from 
+          <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener noreferrer" style="color: var(--primary-green); font-weight: 600; text-decoration: underline;">
+            Google AI Studio
+          </a>.
+        </div>
+
+        <!-- Connection Test Status -->
+        <div id="keyTestFeedback" style="display: none; padding: 0.75rem 1rem; border-radius: var(--radius-sm); font-size: 0.825rem; margin-bottom: 1rem;"></div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" id="clearSavedKeyBtn" class="btn btn-secondary btn-sm" style="color: #DC2626;">
+          Clear Key
+        </button>
+        <button type="button" id="testKeyConnectionBtn" class="btn btn-secondary btn-sm">
+          Test Connection
+        </button>
+        <button type="button" id="saveApiKeyBtn" class="btn btn-primary btn-sm">
+          Save & Apply
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Hub -->
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <!-- Main Application Script (ES Module) -->
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>

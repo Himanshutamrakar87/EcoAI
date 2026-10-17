@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
+  <defs>
+    <linearGradient id="ecoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#16A34A" />
+      <stop offset="50%" stop-color="#059669" />
+      <stop offset="100%" stop-color="#14532D" />
+    </linearGradient>
+    <linearGradient id="leafGlow" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#22C55E" />
+      <stop offset="100%" stop-color="#86EFAC" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#14532D" flood-opacity="0.25" />
+    </filter>
+  </defs>
+
+  <!-- Background Circle Glow -->
+  <circle cx="100" cy="100" r="88" fill="#F0FDF4" stroke="#DCFCE7" stroke-width="4" />
+
+  <!-- Outer Tech Circuit Ring (Dashed) -->
+  <circle cx="100" cy="100" r="76" fill="none" stroke="#86EFAC" stroke-width="2.5" stroke-dasharray="8 6" opacity="0.8" />
+
+  <!-- Tech Nodes -->
+  <circle cx="48" cy="80" r="4.5" fill="#16A34A" />
+  <line x1="48" y1="80" x2="68" y2="92" stroke="#16A34A" stroke-width="2" />
+  <circle cx="152" cy="72" r="4" fill="#059669" />
+  <line x1="152" y1="72" x2="134" y2="86" stroke="#059669" stroke-width="2" />
+  <circle cx="140" cy="135" r="4" fill="#16A34A" />
+  <line x1="140" y1="135" x2="124" y2="122" stroke="#16A34A" stroke-width="2" />
+  <circle cx="62" cy="138" r="3.5" fill="#22C55E" />
+  <line x1="62" y1="138" x2="78" y2="126" stroke="#22C55E" stroke-width="2" />
+
+  <!-- Main Stylized Leaf Group -->
+  <g filter="url(#shadow)">
+    <!-- Main Leaf Body -->
+    <path d="M 100 36 C 145 42 165 92 144 140 C 132 158 112 166 100 166 C 88 166 68 158 56 140 C 35 92 55 42 100 36 Z" fill="url(#ecoGradient)" />
+    
+    <!-- Secondary Leaf Layer (Lighter inner wing) -->
+    <path d="M 100 46 C 132 52 146 90 130 130 C 119 144 108 150 100 152 C 96 116 102 78 100 46 Z" fill="url(#leafGlow)" opacity="0.35" />
+    
+    <!-- Central Leaf Spine / AI Circuit Spine -->
+    <path d="M 100 46 Q 98 100 100 160" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" />
+    
+    <!-- Vein Circuits & Microchip Nodes -->
+    <path d="M 99 74 Q 118 70 128 62" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" opacity="0.9" />
+    <circle cx="128" cy="62" r="3" fill="#FFFFFF" />
+
+    <path d="M 99 96 Q 78 92 68 86" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" opacity="0.9" />
+    <circle cx="68" cy="86" r="3" fill="#FFFFFF" />
+
+    <path d="M 99 116 Q 120 114 130 108" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" opacity="0.9" />
+    <circle cx="130" cy="108" r="3" fill="#FFFFFF" />
+
+    <path d="M 100 136 Q 82 134 76 128" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" opacity="0.9" />
+    <circle cx="76" cy="128" r="2.5" fill="#FFFFFF" />
+  </g>
+
+  <!-- Sparkle / AI intelligence star -->
+  <path d="M 100 24 L 102.5 31 L 109 33.5 L 102.5 36 L 100 43 L 97.5 36 L 91 33.5 L 97.5 31 Z" fill="#FACC15" />
+</svg>

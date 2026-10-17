@@ -1,0 +1,6 @@
+{
+  "name": "EcoAI – AI-Powered Environmental Sustainability Assistant",
+  "description": "An intelligent environmental sustainability assistant aligned with UN SDG 13 (Climate Action) featuring Gemini AI chat, sustainability planning, carbon footprint estimation, waste segregation guide, and interactive green habits tracking.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
